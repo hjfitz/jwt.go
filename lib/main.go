@@ -22,9 +22,6 @@ func main() {
 }
 
 func printJwt(token map[string]interface{}) {
-	fmt.Println("printing token")
-	fmt.Println(&token)
-	fmt.Println("")
 	printObject(token, 0, false)
 }
 
@@ -52,8 +49,8 @@ func printObject(obj map[string]interface{}, indent int, skipOpeningBrace bool) 
 		} else if valType == "bool" {
 			fmt.Printf("%s%s: %t,\n", curIndent, key, val)
 		} else if valType == "slice" {
-			//joined := strings.Join(val.(slice), ", ")
-			fmt.Printf("%s%s: [%s],\n", curIndent, key, val)
+			semiformat := fmt.Sprint(val)
+			fmt.Printf("%s%s: %s,\n", curIndent, key, semiformat)
 		} else {
 			fmt.Printf("unsupported type, %s\n", valType)
 		}
